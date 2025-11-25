@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汴绣数字人 - 交互对话文档</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f9f3e9 0%, #e8dfca 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .document-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content-section {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .content-section h2 {
+            color: #8b4513;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .chat-section {
+            padding: 0;
+        }
+        
+        .chat-container {
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            background: white;
+            margin: 20px;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            background: #fafafa;
+        }
+        
+        .message {
+            margin: 12px 0;
+            padding: 12px 18px;
+            border-radius: 18px;
+            max-width: 80%;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user-message {
+            background: #e3f2fd;
+            margin-left: auto;
+            text-align: right;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message {
+            background: #fce4ec;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .input-area {
+            padding: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        #user-input:focus {
+            border-color: #8b4513;
+        }
+        
+        #send-btn {
+            padding: 14px 28px;
+            background: #8b4513;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        #send-btn:hover {
+            background: #a0522d;
+            transform: translateY(-2px);
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+        
+        .suggestion-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #8b4513;
+            border-radius: 15px;
+            color: #8b4513;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .suggestion-btn:hover {
+            background: #8b4513;
+            color: white;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        <div class="header">
+            <h1>🎨 汴绣文化数字传承文档</h1>
+            <p>交互式汴绣数字人智能体 - 在线对话体验</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>📖 汴绣简介</h2>
+            <p>汴绣，起源于北宋都城汴京（今河南开封），是中国传统刺绣工艺的重要流派，以绣工精致、针法细腻、色彩典雅而著称，素有"国宝"之誉。</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>🌟 艺术特色</h2>
+            <p>汴绣善于运用不同的针法来表现中国书画的笔墨韵味，代表作《清明上河图》完美再现了原作的精妙笔触和丰富细节。</p>
+        </div>
+        
+        <div class="content-section chat-section">
+            <h2>💬 与绣娘对话</h2>
+            <p>在下方与汴绣数字人"绣娘"交流，了解汴绣文化：</p>
+            
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h3>汴绣数字人 · 绣娘</h3>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot-message">
+                        <strong>绣娘：</strong>您好！我是汴绣数字人绣娘，很高兴为您介绍千年汴绣文化。您可以问我关于历史、作品、针法，或者生成定制纹样！
+                    </div>
+                </div>
+                
+                <div class="suggestions">
+                    <button class="suggestion-btn" onclick="quickQuestion('什么是汴绣？')">什么是汴绣？</button>
+                    <button class="suggestion-btn" onclick="quickQuestion('代表作品有哪些？')">代表作品</button>
+                    <button class="suggestion-btn" onclick="quickQuestion('特色针法介绍')">特色针法</button>
+                    <button class="suggestion-btn" onclick="quickQuestion('生成山水纹样')">生成纹样</button>
+                </div>
+                
+                <div class="input-area">
+                    <input type="text" id="user-input" placeholder="请输入您的问题，例如：汴绣的历史..." autofocus>
+                    <button id="send-btn" onclick="sendMessage()">发送</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 汴绣文化数字传承项目 | 交互式智能体文档</p>
+        </div>
+    </div>
+
+    <script>
+        const knowledgeBase = {
+            "intro": "汴绣，又称'宋绣'，起源于北宋时期的汴京（今河南开封），是中国传统刺绣工艺之一，以绣工精致、针法细腻、色彩古朴典雅而著称，素有'国宝'之称。",
+            "works": ["《清明上河图》", "《五牛图》", "《百鸟朝凤》", "《韩熙载夜宴图》"],
+            "techniques": ["蒙针", "滚针", "反戗针", "盘金绣", "散套针"],
+            "history": "汴绣源于宋代，距今已有千年历史。它以绣制中国名古画而闻名，善于表现中国画的笔墨韵味。"
+        };
+
+        function getBotResponse(userInput) {
+            userInput = userInput.toLowerCase();
+            
+            if (userInput.includes('你好') || userInput.includes('您好')) {
+                return "您好！我是汴绣数字人绣娘，很高兴与您交流汴绣文化。";
+            } else if (userInput.includes('介绍') || userInput.includes('什么是')) {
+                return knowledgeBase.intro;
+            } else if (userInput.includes('作品')) {
+                return `汴绣的代表作品有：${knowledgeBase.works.join('、')}。这些作品展现了汴绣的精湛技艺。`;
+            } else if (userInput.includes('针法')) {
+                return `汴绣的特色针法包括：${knowledgeBase.techniques.join('、')}。每种针法都有独特的艺术表现力。`;
+            } else if (userInput.includes('历史')) {
+                return knowledgeBase.history;
+            } else if (userInput.includes('生成') || userInput.includes('纹样')) {
+                const themes = ["山水", "花鸟", "牡丹", "荷花", "锦鲤"];
+                const colors = ["黛青", "朱红", "金黄", "墨绿"];
+                const techniques = ["盘金绣", "滚针", "蒙针"];
+                const theme = themes[Math.floor(Math.random() * themes.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const technique = techniques[Math.floor(Math.random() * techniques.length)];
+                return `为您生成了一幅${theme}主题的汴绣纹样！采用${technique}技法，以${color}色为主调，展现${theme}的意境之美。`;
+            } else {
+                return "您想了解汴绣的哪些方面呢？比如历史渊源、代表作品、特色针法，或者生成定制纹样？";
+            }
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value.trim();
+            if (!userInput) return;
+
+            addMessage(userInput, 'user');
+            
+            setTimeout(() => {
+                const response = getBotResponse(userInput);
+                addMessage(`绣娘：${response}`, 'bot');
+            }, 600);
+            
+            document.getElementById('user-input').value = '';
+        }
+
+        function quickQuestion(question) {
+            document.getElementById('user-input').value = question;
+            sendMessage();
+        }
+
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.innerHTML = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // 支持按Enter键发送
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
